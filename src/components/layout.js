@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import Head from "next/head";
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import { Head, Loader, Nav, Social, Email, Footer } from '@components';
+import { Loader, Nav, Social, Email, Footer } from '@components';
 import { GlobalStyle, theme } from '@styles';
+import { personalInfo } from "@config";
 
 const StyledContent = styled.div`
   display: flex;
@@ -48,8 +50,10 @@ const Layout = ({ children, location }) => {
 
   return (
     <>
-      <Head />
-
+      <Head>
+        <title>{personalInfo.name}</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
       <div id="root">
         <ThemeProvider theme={theme}>
           <GlobalStyle />

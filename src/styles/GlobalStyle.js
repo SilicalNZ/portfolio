@@ -1,11 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
-import fonts from './fonts';
 import variables from './variables';
 import TransitionStyles from './TransitionStyles';
 import PrismStyles from './PrismStyles';
 
 const GlobalStyle = createGlobalStyle`
-  ${fonts};
   ${variables};
 
   html {
@@ -190,7 +188,7 @@ const GlobalStyle = createGlobalStyle`
 
     &:before {
       position: relative;
-      bottom: 4px;
+      bottom: -4px;
       counter-increment: section;
       content: '0' counter(section) '.';
       margin-right: 10px;
@@ -209,7 +207,7 @@ const GlobalStyle = createGlobalStyle`
       content: '';
       display: block;
       position: relative;
-      top: -5px;
+      top: 0px;
       width: 300px;
       height: 1px;
       margin-left: 20px;
@@ -228,8 +226,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   img,
-  svg,
-  .gatsby-image-wrapper {
+  svg {
     width: 100%;
     max-width: 100%;
     vertical-align: middle;
@@ -435,10 +432,6 @@ const GlobalStyle = createGlobalStyle`
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
-  }
-
-  .gatsby-image-outer-wrapper {
-    height: 100%;
   }
 
   ${TransitionStyles};

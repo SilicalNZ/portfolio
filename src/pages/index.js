@@ -1,27 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { Layout, Hero, About, Jobs, Featured, Projects, Contact } from '@components';
+import { Layout, Hero, About, Jobs, Contact } from '@components';
 
 const StyledMainContainer = styled.main`
   counter-reset: section;
 `;
 
-const IndexPage = ({ location }) => (
-  <Layout location={location}>
-    <StyledMainContainer className="fillHeight">
-      <Hero />
-      <About />
-      <Jobs />
-      <Featured />
-      <Projects />
-      <Contact />
-    </StyledMainContainer>
-  </Layout>
-);
+const IndexPage = () => {
+  const router = useRouter()
 
-IndexPage.propTypes = {
-  location: PropTypes.object.isRequired,
+  return (
+      <Layout location={router}>
+        <StyledMainContainer className="fillHeight">
+          <Hero />
+          <About />
+          <Jobs />
+          <Contact />
+        </StyledMainContainer>
+      </Layout>
+    
+  );
 };
 
 export default IndexPage;

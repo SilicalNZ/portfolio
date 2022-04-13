@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Helmet } from 'react-helmet';
-import { Link } from 'gatsby';
+import Head from 'next/head';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { navLinks } from '@config';
 import { KEY_CODES } from '@utils';
@@ -74,7 +74,7 @@ const StyledHamburgerButton = styled.button`
       top: ${props => (props.menuOpen ? `0` : `-10px`)};
       opacity: ${props => (props.menuOpen ? 0 : 1)};
       transition: ${({ menuOpen }) =>
-    menuOpen ? 'var(--ham-before-active)' : 'var(--ham-before)'};
+        menuOpen ? 'var(--ham-before-active)' : 'var(--ham-before)'};
     }
     &:after {
       width: ${props => (props.menuOpen ? `100%` : `80%`)};
@@ -237,9 +237,9 @@ const Menu = () => {
 
   return (
     <StyledMenu>
-      <Helmet>
+      <Head>
         <body className={menuOpen ? 'blur' : ''} />
-      </Helmet>
+      </Head>
 
       <div ref={wrapperRef}>
         <StyledHamburgerButton
@@ -258,7 +258,7 @@ const Menu = () => {
               <ol>
                 {navLinks.map(({ url, name }, i) => (
                   <li key={i}>
-                    <Link to={url} onClick={() => setMenuOpen(false)}>
+                    <Link href={url} onClick={() => setMenuOpen(false)}>
                       {name}
                     </Link>
                   </li>

@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import Image from 'next/image';
 import styled from 'styled-components';
-import sr from '@utils/sr';
+import sr from '@utils';
 import { srConfig } from '@config';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
@@ -341,8 +340,8 @@ const Featured = () => {
       return;
     }
 
-    sr.reveal(revealTitle.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
+    // sr.reveal(revealTitle.current, srConfig());
+    // revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
 
   return (
@@ -403,7 +402,7 @@ const Featured = () => {
 
                 <div className="project-image">
                   <a href={external ? external : github ? github : '#'}>
-                    <GatsbyImage image={image} alt={title} className="img" />
+                    <Image src={image} alt={title} className="img" />
                   </a>
                 </div>
               </StyledProject>

@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
-import { srConfig } from '@config';
+import { jobs, srConfig } from '@config';
 import { KEY_CODES } from '@utils';
-import sr from '@utils/sr';
+import sr from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledJobsSection = styled.section`
@@ -165,30 +164,6 @@ const StyledTabPanel = styled.div`
 `;
 
 const Jobs = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      jobs: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/jobs/" } }
-        sort: { fields: [frontmatter___date], order: DESC }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              title
-              company
-              location
-              range
-              url
-            }
-            html
-          }
-        }
-      }
-    }
-  `);
-
-  const jobsData = data.jobs.edges;
-
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState(null);
   const tabs = useRef([]);
@@ -200,7 +175,7 @@ const Jobs = () => {
       return;
     }
 
-    sr.reveal(revealContainer.current, srConfig());
+    // sr.reveal(revealContainer.current, srConfig());
   }, []);
 
   const focusTab = () => {
@@ -248,59 +223,63 @@ const Jobs = () => {
 
       <div className="inner">
         <StyledTabList role="tablist" aria-label="Job tabs" onKeyDown={e => onKeyDown(e)}>
-          {jobsData &&
-            jobsData.map(({ node }, i) => {
-              const { company } = node.frontmatter;
-              return (
-                <StyledTabButton
-                  key={i}
-                  isActive={activeTabId === i}
-                  onClick={() => setActiveTabId(i)}
-                  ref={el => (tabs.current[i] = el)}
-                  id={`tab-${i}`}
-                  role="tab"
-                  tabIndex={activeTabId === i ? '0' : '-1'}
-                  aria-selected={activeTabId === i ? true : false}
-                  aria-controls={`panel-${i}`}>
-                  <span>{company}</span>
-                </StyledTabButton>
-              );
-            })}
+          {jobs.map((job, i) => {
+            const { company } = job;
+
+            return (
+              <StyledTabButton
+                key={i}
+                isActive={activeTabId === i}
+                onClick={() => setActiveTabId(i)}
+                ref={el => (tabs.current[i] = el)}
+                id={`tab-${i}`}
+                role="tab"
+                tabIndex={activeTabId === i ? '0' : '-1'}
+                aria-selected={activeTabId === i ? true : false}
+                aria-controls={`panel-${i}`}>
+                <span>{company}</span>
+              </StyledTabButton>
+            );
+          })}
+
           <StyledHighlight activeTabId={activeTabId} />
         </StyledTabList>
 
         <StyledTabPanels>
-          {jobsData &&
-            jobsData.map(({ node }, i) => {
-              const { frontmatter, html } = node;
-              const { title, url, company, range } = frontmatter;
+          {jobs.map((job, i) => {
+            const { title, company, range, url, tasks } = job;
+            return (
+              <CSSTransition key={i} in={activeTabId === i} timeout={250} classNames="fade">
+                <StyledTabPanel
+                  id={`panel-${i}`}
+                  role="tabpanel"
+                  tabIndex={activeTabId === i ? '0' : '-1'}
+                  aria-labelledby={`tab-${i}`}
+                  aria-hidden={activeTabId !== i}
+                  hidden={activeTabId !== i}>
+                  <h3>
+                    <span>{title}</span>
+                    <span className="company">
+                      &nbsp;@&nbsp;
+                      <a href={url} className="inline-link">
+                        {company}
+                      </a>
+                    </span>
+                  </h3>
 
-              return (
-                <CSSTransition key={i} in={activeTabId === i} timeout={250} classNames="fade">
-                  <StyledTabPanel
-                    id={`panel-${i}`}
-                    role="tabpanel"
-                    tabIndex={activeTabId === i ? '0' : '-1'}
-                    aria-labelledby={`tab-${i}`}
-                    aria-hidden={activeTabId !== i}
-                    hidden={activeTabId !== i}>
-                    <h3>
-                      <span>{title}</span>
-                      <span className="company">
-                        &nbsp;@&nbsp;
-                        <a href={url} className="inline-link">
-                          {company}
-                        </a>
-                      </span>
-                    </h3>
+                  <p className="range">{range}</p>
 
-                    <p className="range">{range}</p>
-
-                    <div dangerouslySetInnerHTML={{ __html: html }} />
-                  </StyledTabPanel>
-                </CSSTransition>
-              );
-            })}
+                  <div>
+                    <ul>
+                      {tasks.map((task, j) => (
+                        <li key={j}>{task}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </StyledTabPanel>
+              </CSSTransition>
+            );
+          })}
         </StyledTabPanels>
       </div>
     </StyledJobsSection>
