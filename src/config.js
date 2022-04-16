@@ -10,7 +10,7 @@ module.exports = {
   about: {
     paragraphs: [
       'Hi! My name is Akira Chow and I enjoy creating mobile apps. My interest in mobile development started back in 2017 after I followed a mobile development course in university. After lots of trial and error I finally got the gist of it and ever since then I was hooked!',
-      'Fast-forward to today I\'ve had the opportunity of working at <a href="https://www.lyceo.nl">an education start-up</a>, <a href="https://www.rbgroup.aero">start-up for airline crews</a>, and <a href="https://www.cae.com">huge aviation corporation</a>. My main focus these days is building and maintaining an application suite of mobile apps at <a href="https://www.cae.com">CAE</a> for crews, pilots, and operators.',
+      'Fast-forward to today I\'ve had the opportunity of working at <a href="https://www.lyceo.nl" target="_blank">an education company</a>, <a href="https://www.rbgroup.aero" target="_blank">start-up for airline crews</a>, and <a href="https://www.cae.com" target="_blank">huge aviation corporation</a>. My main focus these days is building and maintaining an application suite of mobile apps at <a href="https://www.cae.com" target="_blank">CAE</a> for crews, pilots, and operators.',
     ],
     recentSkills: [
       'JavaScript (ES6+)',
