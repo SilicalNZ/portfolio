@@ -152,10 +152,10 @@ const About = () => {
           <div className="wrapper">
             <Image
               className="img"
-              src="https://res.cloudinary.com/dgw2mexe/image/upload/v1649871677/me_skwskp.jpg"
+              src="https://res.cloudinary.com/dgw2mexe/image/upload/v1650125153/me_tb1v6p.webp"
               quality="95"
               width="75%" 
-              height="100%" 
+              height="75%" 
               layout="responsive" 
               objectFit="contain"
               alt="Headshot"
