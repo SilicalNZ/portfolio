@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { personalInfo } from "@config";
 import { ServerStyleSheet } from 'styled-components';
 
 class MyDocument extends Document {
@@ -32,7 +31,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <title>{personalInfo.name}</title>
+        <title>Akira Chow</title>
         <meta name="description" content="Akira Chow is a software engineer specializing in building and maintaining beautiful and responsive mobile apps." ></meta>
         <meta content="Akira Chow is a software engineer specializing in building and maintaining beautiful and responsive mobile apps." property="og.description" ></meta>
         <meta content="en_US" property="og:locale" ></meta>

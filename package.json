@@ -12,7 +12,8 @@
     "dev": "next dev",
     "build": "next build",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "animejs": "^3.2.1",
