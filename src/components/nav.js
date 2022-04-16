@@ -161,12 +161,12 @@ const Nav = ({ isHome }) => {
   const Logo = (
     <div className="logo" tabIndex="-1">
       {isHome ? (
-        <a href="/" aria-label="home">
-          <IconLogo />
-        </a>
+        <Link passHref href="/" aria-label="home">
+          <a><IconLogo /></a>
+        </Link>
       ) : (
-        <Link href="/" aria-label="home">
-          <IconLogo />
+        <Link passHref href="/" aria-label="home">
+          <a><IconLogo /></a>
         </Link>
       )}
     </div>
