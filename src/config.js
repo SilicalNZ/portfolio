@@ -7,6 +7,10 @@ module.exports = {
       'I’m a software engineer specializing in building and maintaining beautiful and responsive mobile apps.',
   },
 
+  metadata: {
+    description: 'Akira Chow is a software engineer specializing in building and maintaining beautiful and responsive mobile apps.',
+  },
+
   about: {
     paragraphs: [
       'Hi! My name is Akira Chow and I enjoy creating mobile apps. My interest in mobile development started back in 2017 after I followed a mobile development course in university. After lots of trial and error I finally got the gist of it and ever since then I was hooked!',

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { Loader, Nav, Social, Email, Footer } from '@components';
 import { GlobalStyle, theme } from '@styles';
-import { personalInfo } from "@config";
+import { personalInfo, metadata } from "@config";
 
 const StyledContent = styled.div`
   display: flex;
@@ -50,7 +50,10 @@ const Layout = ({ children, location }) => {
 
   return (
     <>
-      <Head lang="en" title={personalInfo.name}>
+      <Head>
+        <html lang="en" />
+        <title>{personalInfo.name}</title>
+        <meta name="description" content={metadata.description} />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <div id="root">
