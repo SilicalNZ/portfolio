@@ -31,7 +31,6 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <title>Akira Chow</title>
         <meta name="description" content="Akira Chow is a software engineer specializing in building and maintaining beautiful and responsive mobile apps." ></meta>
         <meta content="Akira Chow is a software engineer specializing in building and maintaining beautiful and responsive mobile apps." property="og.description" ></meta>
         <meta content="en_US" property="og:locale" ></meta>

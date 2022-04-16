@@ -238,6 +238,7 @@ const Menu = () => {
   return (
     <StyledMenu>
       <Head>
+        <title>Akira Chow</title>
         <body className={menuOpen ? 'blur' : ''} />
       </Head>
 

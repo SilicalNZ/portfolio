@@ -83,7 +83,9 @@ const Loader = ({ finishLoading }) => {
 
   return (
     <StyledLoader className="loader" isMounted={isMounted}>
-      <Head bodyAttributes={{ class: `hidden` }} />
+      <Head bodyAttributes={{ class: `hidden` }} >
+        <title>Akira Chow</title>
+      </Head>
 
       <div className="logo-wrapper">
         <IconLoader />
