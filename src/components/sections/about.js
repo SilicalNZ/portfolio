@@ -140,7 +140,7 @@ const About = () => {
               <p key={i} dangerouslySetInnerHTML={{ __html: v }} />
             ))}
 
-            <p>Here are a few technologies I’ve been working with recently:</p>
+            <p>Here are a few technologies I’ve worked with:</p>
           </div>
 
           <ul className="skills-list">
@@ -157,6 +157,7 @@ const About = () => {
               width="75%" 
               height="75%" 
               layout="responsive" 
+              loading="lazy"
               objectFit="contain"
               alt="Headshot"
             />
