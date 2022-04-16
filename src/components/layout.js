@@ -50,8 +50,7 @@ const Layout = ({ children, location }) => {
 
   return (
     <>
-      <Head>
-        <title>{personalInfo.name}</title>
+      <Head lang="en" title={personalInfo.name}>
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <div id="root">
