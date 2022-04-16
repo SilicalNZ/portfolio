@@ -53,7 +53,11 @@ const Layout = ({ children, location }) => {
       <Head>
         <html lang="en" />
         <title>{personalInfo.name}</title>
-        <meta name="description" content={metadata.description} />
+        <meta name="description" content="Akira Chow is a software engineer specializing in building and maintaining beautiful and responsive mobile apps." ></meta>
+        <meta content="Akira Chow is a software engineer specializing in building and maintaining beautiful and responsive mobile apps." property="og.description" ></meta>
+        <meta content="en_US" property="og:locale" ></meta>
+        <meta content="akirachow.dev" property="og:site_name" ></meta>
+        <meta content="Akira Chow's Portfolio" property="og:title" ></meta>
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <div id="root">
