@@ -8,6 +8,7 @@ module.exports = {
   },
 
   metadata: {
+    name: "Akira Chow",
     lang: "en",
     locale: "en_US",
     url: "akirachow.dev",

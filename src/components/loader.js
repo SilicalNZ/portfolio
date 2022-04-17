@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import anime from 'animejs';
 import styled from 'styled-components';
 import { IconLoader } from '@components/icons';
+import { metadata } from "@config";
 
 const StyledLoader = styled.div`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -84,7 +85,7 @@ const Loader = ({ finishLoading }) => {
   return (
     <StyledLoader className="loader" isMounted={isMounted}>
       <Head bodyAttributes={{ class: `hidden` }} >
-        <title>Akira Chow</title>
+        <title>{metadata.name}</title>
       </Head>
 
       <div className="logo-wrapper">

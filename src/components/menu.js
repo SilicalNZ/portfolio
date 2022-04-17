@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { navLinks } from '@config';
 import { KEY_CODES } from '@utils';
 import { useOnClickOutside } from '@hooks';
+import { metadata } from "@config";
 
 const StyledMenu = styled.div`
   display: none;
@@ -238,7 +239,7 @@ const Menu = () => {
   return (
     <StyledMenu>
       <Head>
-        <title>Akira Chow</title>
+        <title>{metadata.name}</title>
         <body className={menuOpen ? 'blur' : ''} />
       </Head>
 
