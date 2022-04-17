@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { srConfig, personalInfo } from '@config';
-import sr from '@utils';
+import { personalInfo } from '@config';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledContactSection = styled.section`
@@ -50,7 +49,6 @@ const Contact = () => {
       return;
     }
 
-    // sr.reveal(revealContainer.current, srConfig());
   }, [prefersReducedMotion]);
 
   return (

@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
-import { srConfig } from '@config';
-import sr from '@utils';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
 
@@ -190,9 +188,6 @@ const Projects = () => {
   `);
 
   const [showMore, setShowMore] = useState(false);
-  const revealTitle = useRef(null);
-  const revealArchiveLink = useRef(null);
-  const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -200,9 +195,6 @@ const Projects = () => {
       return;
     }
 
-    // sr.reveal(revealTitle.current, srConfig());
-    // sr.reveal(revealArchiveLink.current, srConfig());
-    // revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, [prefersReducedMotion]);
 
   const GRID_LIMIT = 6;
@@ -264,9 +256,9 @@ const Projects = () => {
 
   return (
     <StyledProjectsSection>
-      <h2 ref={revealTitle}>Other Noteworthy Projects</h2>
+      <h2>Other Noteworthy Projects</h2>
 
-      <Link className="inline-link archive-link" href="/archive" ref={revealArchiveLink}>
+      <Link className="inline-link archive-link" href="/archive">
         view the archive
       </Link>
 
@@ -289,7 +281,6 @@ const Projects = () => {
                   exit={false}>
                   <StyledProject
                     key={i}
-                    ref={el => (revealProjects.current[i] = el)}
                     style={{
                       transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
                     }}>

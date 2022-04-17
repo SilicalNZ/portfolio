@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
-import { jobs, srConfig } from '@config';
+import { jobs } from '@config';
 import { KEY_CODES } from '@utils';
-import sr from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledJobsSection = styled.section`
@@ -167,7 +166,6 @@ const Jobs = () => {
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState(null);
   const tabs = useRef([]);
-  const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -175,7 +173,6 @@ const Jobs = () => {
       return;
     }
 
-    // sr.reveal(revealContainer.current, srConfig());
   }, [prefersReducedMotion]);
 
   const focusTab = useCallback(() => {
@@ -191,7 +188,7 @@ const Jobs = () => {
     if (tabFocus < 0) {
       setTabFocus(tabs.current.length - 1);
     }
-  }, [tabFocus]);
+  }, []);
 
   // Only re-run the effect if tabFocus changes
   useEffect(() => focusTab(), [tabFocus, focusTab]);
@@ -218,7 +215,7 @@ const Jobs = () => {
   };
 
   return (
-    <StyledJobsSection id="jobs" ref={revealContainer}>
+    <StyledJobsSection id="jobs">
       <h2 className="numbered-heading">Where I’ve Worked</h2>
 
       <div className="inner">

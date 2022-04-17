@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { about, srConfig } from '@config';
-import sr from '@utils';
+import { about } from '@config';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledAboutSection = styled.section`
@@ -123,7 +122,6 @@ const About = () => {
       return;
     }
 
-    // sr.reveal(revealContainer.current, srConfig());
   }, [prefersReducedMotion]);
 
   const skills = about.recentSkills;

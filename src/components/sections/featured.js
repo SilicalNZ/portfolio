@@ -1,8 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import sr from '@utils';
-import { srConfig } from '@config';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
 
@@ -331,8 +329,6 @@ const Featured = () => {
   `);
 
   const featuredProjects = data.featured.edges.filter(({ node }) => node);
-  const revealTitle = useRef(null);
-  const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -340,13 +336,11 @@ const Featured = () => {
       return;
     }
 
-    // sr.reveal(revealTitle.current, srConfig());
-    // revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, [prefersReducedMotion]);
 
   return (
     <section id="projects">
-      <h2 className="numbered-heading" ref={revealTitle}>
+      <h2 className="numbered-heading">
         Some Things I’ve Built
       </h2>
 
@@ -358,7 +352,7 @@ const Featured = () => {
             const image = getImage(cover);
 
             return (
-              <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
+              <StyledProject key={i}>
                 <div className="project-content">
                   <div>
                     <p className="project-overline">Featured Project</p>
