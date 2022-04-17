@@ -8,7 +8,11 @@ module.exports = {
   },
 
   metadata: {
+    lang: "en",
+    locale: "en_US",
+    url: "akirachow.dev",
     description: 'Akira Chow is a software engineer specializing in building and maintaining beautiful and responsive mobile apps.',
+    title: "Akira Chow's Portfolio"
   },
 
   about: {

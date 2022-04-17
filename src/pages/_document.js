@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { metadata } from '@config';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -30,12 +31,12 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en">
-        <meta name="description" content="Akira Chow is a software engineer specializing in building and maintaining beautiful and responsive mobile apps." ></meta>
-        <meta content="Akira Chow is a software engineer specializing in building and maintaining beautiful and responsive mobile apps." property="og.description" ></meta>
-        <meta content="en_US" property="og:locale" ></meta>
-        <meta content="akirachow.dev" property="og:site_name" ></meta>
-        <meta content="Akira Chow's Portfolio" property="og:title" ></meta>
+      <Html lang={metadata.lang}>
+        <meta content={metadata.description} name="description"  ></meta>
+        <meta content={metadata.description} property="og.description" ></meta>
+        <meta content={metadata.locale} property="og:locale" ></meta>
+        <meta content={metadata.url} property="og:site_name" ></meta>
+        <meta content={metadata.title} property="og:title" ></meta>
         <link rel="shortcut icon" href="/favicon.ico" />
       <Head />
       <body>
