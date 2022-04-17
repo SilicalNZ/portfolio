@@ -1,3 +1,15 @@
+<div align="center">
+  <img alt="Logo" src="https://github.com/Akira-Chow/portfolio/blob/main/public/images/logo.webp" width="100" />
+</div>
+<h1 align="center">
+  <a href="https://www.akirachow.dev">akirachow.dev</a>
+</h1>
+<p align="center">
+  My portfolio website built with <a href="https://www.nextjs.org/" target="_blank">NextJS</a> and hosted with <a href="https://www.vercel.com/" target="_blank">Vercel</a>. Design by <a href="https://brittanychiang.com" target="_blank">Brittany Chiang</a>.
+</p>
+
+![demo](https://github.com/Akira-Chow/portfolio/blob/main/public/images/demo.webp)
+
 ## 🛠 Installation & Set Up
 
 1. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
