@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import Image from 'next/image';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
+import { projects } from "@config";
 
 const StyledProjectsSection = styled.section`
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   h2 {
     font-size: clamp(24px, 5vw, var(--fz-heading));
@@ -132,6 +132,18 @@ const StyledProject = styled.li`
     }
   }
 
+  header {
+    width: 100%;
+  }
+
+  section {
+    padding: 0;
+  }
+
+  .img-container {
+    width: 250px;
+  }
+
   .project-description {
     color: var(--light-slate);
     font-size: 17px;
@@ -163,30 +175,6 @@ const StyledProject = styled.li`
 `;
 
 const Projects = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      projects: allMarkdownRemark(
-        filter: {
-          fileAbsolutePath: { regex: "/projects/" }
-          frontmatter: { showInProjects: { ne: false } }
-        }
-        sort: { fields: [frontmatter___date], order: DESC }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              title
-              tech
-              github
-              external
-            }
-            html
-          }
-        }
-      }
-    }
-  `);
-
   const [showMore, setShowMore] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -198,13 +186,11 @@ const Projects = () => {
   }, [prefersReducedMotion]);
 
   const GRID_LIMIT = 6;
-  const projects = data.projects.edges.filter(({ node }) => node);
   const firstSix = projects.slice(0, GRID_LIMIT);
   const projectsToShow = showMore ? projects : firstSix;
 
-  const projectInner = node => {
-    const { frontmatter, html } = node;
-    const { github, external, title, tech } = frontmatter;
+  const projectInner = project => {
+    const { github, external, title, tech, html, cover } = project;
 
     return (
       <div className="project-inner">
@@ -238,8 +224,24 @@ const Projects = () => {
             </a>
           </h3>
 
-          <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
+          {/* <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} /> */}
+          
         </header>
+
+        <section>
+          <div className="img-container">
+            <Image 
+                src={cover} 
+                alt={title} 
+                className="img" 
+                quality="95"
+                width="100%" 
+                height="100%" 
+                layout="responsive" 
+                loading="lazy"
+                objectFit="contain" />
+          </div>
+        </section>
 
         <footer>
           {tech && (
@@ -258,22 +260,18 @@ const Projects = () => {
     <StyledProjectsSection>
       <h2>Other Noteworthy Projects</h2>
 
-      <Link className="inline-link archive-link" href="/archive">
-        view the archive
-      </Link>
-
       <ul className="projects-grid">
         {prefersReducedMotion ? (
           <>
             {projectsToShow &&
-              projectsToShow.map(({ node }, i) => (
-                <StyledProject key={i}>{projectInner(node)}</StyledProject>
+              projectsToShow.map((project, i) => (
+                <StyledProject key={i}>{projectInner(project)}</StyledProject>
               ))}
           </>
         ) : (
           <TransitionGroup component={null}>
             {projectsToShow &&
-              projectsToShow.map(({ node }, i) => (
+              projectsToShow.map((project, i) => (
                 <CSSTransition
                   key={i}
                   classNames="fadeup"
@@ -284,7 +282,7 @@ const Projects = () => {
                     style={{
                       transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
                     }}>
-                    {projectInner(node)}
+                    {projectInner(project)}
                   </StyledProject>
                 </CSSTransition>
               ))}

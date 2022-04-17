@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
+import { featured } from "@config";
 
 const StyledProjectsGrid = styled.ul`
   ${({ theme }) => theme.mixins.resetList};
@@ -301,34 +302,6 @@ const StyledProject = styled.li`
 `;
 
 const Featured = () => {
-  const data = useStaticQuery(graphql`
-    {
-      featured: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/featured/" } }
-        sort: { fields: [frontmatter___date], order: ASC }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              title
-              cover {
-                childImageSharp {
-                  gatsbyImageData(width: 700, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
-                }
-              }
-              tech
-              github
-              external
-              cta
-            }
-            html
-          }
-        }
-      }
-    }
-  `);
-
-  const featuredProjects = data.featured.edges.filter(({ node }) => node);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -345,11 +318,9 @@ const Featured = () => {
       </h2>
 
       <StyledProjectsGrid>
-        {featuredProjects &&
-          featuredProjects.map(({ node }, i) => {
-            const { frontmatter, html } = node;
-            const { external, title, tech, github, cover, cta } = frontmatter;
-            const image = getImage(cover);
+        {featured &&
+          featured.map(({ external, title, tech, github, cover, cta, html }, i) => {
+            // const { external, title, tech, github, cover, cta, html } = featured;
 
             return (
               <StyledProject key={i}>
@@ -396,7 +367,16 @@ const Featured = () => {
 
                 <div className="project-image">
                   <a href={external ? external : github ? github : '#'}>
-                    <Image src={image} alt={title} className="img" />
+                    <Image 
+                      src={cover} 
+                      alt={title} 
+                      className="img" 
+                      quality="95"
+                      width="100%" 
+                      height="66%" 
+                      layout="responsive" 
+                      loading="lazy"
+                      objectFit="cover" />
                   </a>
                 </div>
               </StyledProject>
