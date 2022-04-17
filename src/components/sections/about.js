@@ -124,7 +124,7 @@ const About = () => {
     }
 
     // sr.reveal(revealContainer.current, srConfig());
-  }, []);
+  }, [prefersReducedMotion]);
 
   const skills = about.recentSkills;
   const paragraphs = about.paragraphs;

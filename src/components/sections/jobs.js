@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 import { jobs, srConfig } from '@config';
@@ -176,9 +176,9 @@ const Jobs = () => {
     }
 
     // sr.reveal(revealContainer.current, srConfig());
-  }, []);
+  }, [prefersReducedMotion]);
 
-  const focusTab = () => {
+  const focusTab = useCallback(() => {
     if (tabs.current[tabFocus]) {
       tabs.current[tabFocus].focus();
       return;
@@ -191,10 +191,10 @@ const Jobs = () => {
     if (tabFocus < 0) {
       setTabFocus(tabs.current.length - 1);
     }
-  };
+  }, [tabFocus]);
 
   // Only re-run the effect if tabFocus changes
-  useEffect(() => focusTab(), [tabFocus]);
+  useEffect(() => focusTab(), [tabFocus, focusTab]);
 
   // Focus on tabs when using up & down arrow keys
   const onKeyDown = e => {
