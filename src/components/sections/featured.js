@@ -320,7 +320,6 @@ const Featured = () => {
       <StyledProjectsGrid>
         {featured &&
           featured.map(({ external, title, tech, github, cover, cta, html }, i) => {
-            // const { external, title, tech, github, cover, cta, html } = featured;
 
             return (
               <StyledProject key={i}>
@@ -336,8 +335,7 @@ const Featured = () => {
                       className="project-description"
                       dangerouslySetInnerHTML={{ __html: html }}
                     />
-
-                    {tech.length && (
+                    {tech?.length > 0 && (
                       <ul className="project-tech-list">
                         {tech.map((tech, i) => (
                           <li key={i}>{tech}</li>
@@ -365,20 +363,22 @@ const Featured = () => {
                   </div>
                 </div>
 
-                <div className="project-image">
-                  <a href={external ? external : github ? github : '#'}>
-                    <Image 
-                      src={cover} 
-                      alt={title} 
-                      className="img" 
-                      quality="95"
-                      width="100%" 
-                      height="66%" 
-                      layout="responsive" 
-                      loading="lazy"
-                      objectFit="cover" />
-                  </a>
-                </div>
+                {cover && (
+                  <div className="project-image">
+                    <a href={external ? external : github ? github : '#'}>
+                      <Image 
+                        src={cover} 
+                        alt="Image Cover" 
+                        className="img" 
+                        quality="95"
+                        width="100%" 
+                        height="66%" 
+                        layout="responsive" 
+                        loading="lazy"
+                        objectFit="cover" />
+                    </a>
+                  </div>
+                )}
               </StyledProject>
             );
           })}

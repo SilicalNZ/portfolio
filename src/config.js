@@ -1,116 +1,206 @@
+
+
 module.exports = {
   personalInfo: {
-    email: "chowakira@gmail.com",
-    name: "Akira Chow",
-    descriptionShort: "I build mobile apps",
+    email: "silical@gmail.com",
+    name: "Aaron Randell",
+    descriptionShort: "Software Engineer",
     descriptionLong:
-      "I'm a software engineer specializing in building and maintaining, beautiful and responsive, mobile apps.",
-    headshotUrl: "https://res.cloudinary.com/dgw2mexe/image/upload/v1650125153/me_tb1v6p.webp"
+      "Since starting in 2015 with Python, I became a software engineer focused on building highly scalable systems, while keeping code maintainability and security at the forefront of thought.",
+    headshotUrl: "https://cdn.discordapp.com/attachments/416183239942733824/966051769794846770/headshot.webp"
   },
 
   metadata: {
-    name: "Akira Chow",
+    name: "Aaron Randell",
     lang: "en",
     locale: "en_US",
-    url: "akirachow.dev",
-    description: "Akira Chow is a software engineer specializing in building and maintaining, beautiful and responsive, mobile apps.",
-    title: "Akira Chow's Portfolio"
+    url: "silical.dev",
+    description: "Aaron Randell is a Software Engineer focused on building higly scalable systems",
+    title: "Aaron Randell's Portfolio"
   },
 
   about: {
     paragraphs: [
-      'Hi! My name is Akira Chow and I enjoy creating mobile apps. My interest in mobile development started back in 2017 after I followed a mobile development course in university.',
-      'Fast-forward to today. I\'ve had the opportunity of working at <a href="https://www.lyceo.nl" target="_blank">an education company</a>, <a href="https://www.rbgroup.aero" target="_blank">start-up for airline crews</a>, and a <a href="https://www.cae.com" target="_blank">huge aviation corporation</a>. My main focus these days is building and maintaining an application suite of mobile apps at <a href="https://www.cae.com" target="_blank">CAE</a> for crews, pilots, and operators.',
+      'Programming is a core passion of mine and anything involving its complexities and improvement keeps me engaged and active. I thrive under strenuous situations, finding great enjoyment in “beating the odds” and providing a result that pleases and exceeds the expectations of a vision-holder.', 
+      'I experiment with Software Architecture patterns and apply what I recognise to be the best available pattern for the given solution. I also develop in a somewhat competitive manner, seeking challenges and competitions that push me outside of my comfort zone to constantly further my progression as a developer.',
     ],
     recentSkills: [
-      'JavaScript (ES6+)',
-      'Typescript',
-      'React / React Native',
-      'Ionic',
-      'Angular',
-      'Swift (native iOS)',
+      'Python',
+      'Golang',
+      'Javascript',
+      'Postgres (PLPGSQL)',
+      'Git',
+      'Docker',
+      'AWS',
     ],
   },
 
   jobs: [
     {
-      id: 4,
-      title: 'Software Engineer',
-      company: 'CAE',
-      location: 'Zoetermeer, Netherlands',
-      range: 'April 2021 - Present',
-      url: 'https://www.cae.com',
-      tasks: [
-        'Write performant, robust, maintainable code for mobile apps',
-        'Work with a variety of different languages, platforms, frameworks, and content management systems such as JavaScript, TypeScript, React Native, Ionic Angular, and Swift (iOS native)',
-        'Collaborate with multinational teams of engineers, designers, and product owners on a daily basis',
-      ],
-    },
-    {
-      id: 3,
-      title: 'Software Engineer',
-      company: 'RB Group.aero',
-      location: 'Zoetermeer, Netherlands',
-      range: 'July 2019 - April 2021',
-      url: 'https://rosterbuster.aero/',
-      tasks: [
-        'Worked with a team of four engineers to build a new mobile app for pilots using React Native',
-      ],
-    },
-    {
-      id: 2,
-      title: 'Intern',
-      company: 'RosterBuster',
-      location: 'Zoetermeer, Netherlands',
-      range: 'February 2019 - June 2019',
-      url: 'https://www.rbgroup.aero',
-      tasks: [
-        'Research suitable hybrid mobile application development frameworks for a new mobile app',
-      ],
-    },
-    {
       id: 1,
-      title: 'Junior Developer',
-      company: 'Inwijs',
-      location: 'Leiden, Netherlands',
-      range: 'June 2017 - November 2017',
-      url: 'https://www.lyceo.nl',
+      title: 'Software Engineer II',
+      company: 'Tournament Kings',
+      location: 'Denver, Colorado',
+      range: 'July 2020 - March 2022',
+      url: 'https://www.tournamentkings.com/',
       tasks: [
-        'Build mobile apps using Ionic Angular and PHP Symfony as backend',
-        'Write robust test cases for the backend system',
+        'Provided expertise towards their development space (language and framework)',
+        'Greatly improved Uptime', 
+        'Reduced technical debt and churn',
+        'Assisted with multiple investigations and reputibility of aquisitions',
+        'Built multiple products with fullstack implementation',
       ],
-    },
-    {
-      id: 0,
-      title: 'Intern',
-      company: 'DeDecaan',
-      location: 'Leiden, Netherlands',
-      range: 'February 2017 - June 2017',
-      url: 'https://www.dedecaan.net',
-      tasks: ['Rebuild and modernize parts of an existing website'],
     },
   ],
 
   featured: [
-    // { 
-    //   external: "", 
-    //   title: "", 
-    //   tech: [], 
-    //   github: "", 
-    //   cover: "", 
-    //   cta: "", 
-    //   html: "" 
-    // },
+    { 
+      external: "https://github.com/SilicalNZ/lastFM_API", 
+      title: "Pythonic LastFM API", 
+      tech: [], 
+      github: "https://github.com/SilicalNZ/lastFM_API", 
+      cover: "", 
+      cta: "", 
+      html: "Feature important queries to the lastfm api, translating the responses to python specific terminology.", 
+    },
+    { 
+      external: "https://github.com/SilicalNZ/Challenges", 
+      title: "Programming Exercises", 
+      tech: [], 
+      github: "https://github.com/SilicalNZ/Challenges", 
+      cover: "", 
+      cta: "", 
+      html: "A collection of my coding challenges and scripts for games I've played.", 
+    },
   ],
 
   projects: [
-    // { 
-    //   github: "", 
-    //   external: "", 
-    //   title: "", 
-    //   tech: [], 
-    //   html: "" 
-    // },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/416183239942733824/963840127921184789/result2.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/416183239942733824/963840128642596934/result3.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/416183239942733824/963840128973942914/result4.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/416183239942733824/963840129909260298/1582387552.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/421368696339038208/703537773197525002/1587806875.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/421368696339038208/543828047791521818/1549729096.4686322.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/421368696339038208/542007611944599552/1549295069.0139427.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/421368696339038208/528410055796719626/1546053166.5344222.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/421368696339038208/501243025066819584/image.png",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/416183239942733824/963840127413657610/result1.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/416183239942733824/963840127090692097/result_image.png",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/416183239942733824/963840126402854933/1636836575301476343.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/416183239942733824/963840124095983666/1620291655214366071.gif",
+      cta: "",
+      html: "",
+    },
+    { 
+      external: "",
+      title: "",   
+      tech: [], 
+      github: "",
+      cover: "https://cdn.discordapp.com/attachments/416183239942733824/963840123504562186/1613373566387094450.gif",
+      cta: "",
+      html: "",
+    },
   ],
 
   contact: {
@@ -121,11 +211,11 @@ module.exports = {
   socialMedia: [
     {
       name: 'GitHub',
-      url: 'https://github.com/Akira-Chow',
+      url: 'https://github.com/SilicalNZ',
     },
     {
       name: 'Linkedin',
-      url: 'https://www.linkedin.com/in/akirachow',
+      url: 'https://www.linkedin.com/in/aaron-randell-ab9796199/',
     },
   ],
 
@@ -138,13 +228,14 @@ module.exports = {
       name: 'Experience',
       url: '/#jobs',
     },
-    // {
-    //   name: 'Work',
-    //   url: '/#projects',
-    // },
+    {
+      name: 'Work',
+      url: '/#projects',
+    },
     {
       name: 'Contact',
       url: '/#contact',
     },
   ],
 };
+

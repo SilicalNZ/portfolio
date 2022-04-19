@@ -141,7 +141,7 @@ const StyledProject = styled.li`
   }
 
   .img-container {
-    width: 250px;
+    width: 200px;
   }
 
   .project-description {
@@ -194,45 +194,51 @@ const Projects = () => {
 
     return (
       <div className="project-inner">
-        <header>
-          <div className="project-top">
-            <div className="folder">
-              <Icon name="Folder" />
-            </div>
-            <div className="project-links">
+        {title && (
+          <header>
+            <div className="project-top">
               {github && (
-                <a href={github} aria-label="GitHub Link" target="_blank" rel="noreferrer">
-                  <Icon name="GitHub" />
-                </a>
+                <div className="folder">
+                  <Icon name="Folder" />
+                </div>
               )}
-              {external && (
-                <a
-                  href={external}
-                  aria-label="External Link"
-                  className="external"
-                  target="_blank"
-                  rel="noreferrer">
-                  <Icon name="External" />
-                </a>
-              )}
+              <div className="project-links">
+                {github && (
+                  <a href={github} aria-label="GitHub Link" target="_blank" rel="noreferrer">
+                    <Icon name="GitHub" />
+                  </a>
+                )}
+                {external && (
+                  <a
+                    href={external}
+                    aria-label="External Link"
+                    className="external"
+                    target="_blank"
+                    rel="noreferrer">
+                    <Icon name="External" />
+                  </a>
+                )}
+              </div>
             </div>
-          </div>
 
-          <h3 className="project-title">
-            <a href={external} target="_blank" rel="noreferrer">
-              {title}
-            </a>
-          </h3>
+            {external && (
+              <h3 className="project-title">
+                <a href={external} target="_blank" rel="noreferrer">
+                  {title}
+                </a>
+            </h3>
+            )}
 
-          {/* <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} /> */}
+            {/* <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} /> */}
           
         </header>
+        )}
 
         <section>
           <div className="img-container">
             <Image 
                 src={cover} 
-                alt={title} 
+                alt="Image Cover"
                 className="img" 
                 quality="95"
                 width="100%" 
@@ -258,7 +264,7 @@ const Projects = () => {
 
   return (
     <StyledProjectsSection>
-      <h2>Other Noteworthy Projects</h2>
+      <h2>Digital Art</h2>
 
       <ul className="projects-grid">
         {prefersReducedMotion ? (

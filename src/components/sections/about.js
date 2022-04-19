@@ -153,8 +153,8 @@ const About = () => {
               className="img"
               src={personalInfo.headshotUrl}
               quality="95"
-              width="75%" 
-              height="75%" 
+              width="100%" 
+              height="100%" 
               layout="responsive" 
               loading="lazy"
               objectFit="contain"
