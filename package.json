@@ -2,10 +2,10 @@
   "name": "v4",
   "description": "Personal Website",
   "version": "1.0.0",
-  "author": "Akira Chow <chowakira@gmail.com>",
+  "author": "Aaron Randell <silicalnz@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Akira-Chow/portfolio"
+    "url": "https://github.com/SilicalNZ/portfolio"
   },
   "keywords": [
     "nextjs"
