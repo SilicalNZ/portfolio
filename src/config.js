@@ -2,7 +2,7 @@
 
 module.exports = {
   personalInfo: {
-    email: "silical@gmail.com",
+    email: "SilicalNZ@gmail.com",
     name: "Aaron Randell",
     descriptionShort: "Software Engineer",
     descriptionLong:
@@ -56,7 +56,7 @@ module.exports = {
   featured: [
     { 
       external: "https://github.com/SilicalNZ/lastFM_API", 
-      title: "Pythonic LastFM API", 
+      title: "Pythonic LastFM API Wrapper", 
       tech: [], 
       github: "https://github.com/SilicalNZ/lastFM_API", 
       cover: "", 
