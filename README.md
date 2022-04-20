@@ -2,7 +2,7 @@
   <img alt="Logo" src="https://github.com/SilicalNZ/portfolio/blob/main/public/images/logo.webp" width="100" />
 </div>
 <h1 align="center">
-  <a href="https://www.silical.dev">silical.dev</a>
+  <a href="https://silical.dev">silical.dev</a>
 </h1>
 <p align="center">
   My portfolio website built with <a href="https://www.nextjs.org/" target="_blank">NextJS</a>. Design by <a href="https://brittanychiang.com" target="_blank">Brittany Chiang</a>.
