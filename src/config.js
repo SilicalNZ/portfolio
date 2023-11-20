@@ -98,6 +98,15 @@ module.exports = {
       cta: "", 
       html: "Demonstrates an interesting use of metaclasses to reduce boilerplate. Very few python devs even know what a metaclass is.", 
     },
+    { 
+      external: "", 
+      title: "Digital Art", 
+      tech: [], 
+      github: "", 
+      cover: "", 
+      cta: "", 
+      html: "I sometimes take programming quite literally as an art form and spend time creating visual effects on a provided image. This typically involves a lot of math and a decent understanding of colour theory.", 
+    },
   ],
 
   projects: [
