@@ -78,7 +78,7 @@ module.exports = {
       github: "https://github.com/SilicalNZ/Challenges", 
       cover: "", 
       cta: "", 
-      html: "Various programming exercises I either did as part of a competition, or found partically fun/interesting. AES Encryption Standard, AOC, CodinGame AI Competition, etc", 
+      html: "Various programming exercises I either did as part of a competition, or found particularly fun/interesting. AES Encryption Standard, AOC, CodinGame AI Competition, etc", 
     },
     { 
       external: "https://github.com/SilicalNZ/TapTitans2py", 
@@ -87,7 +87,7 @@ module.exports = {
       github: "https://github.com/SilicalNZ/TapTitans2py", 
       cover: "", 
       cta: "", 
-      html: "Not partically interesting, just shows a general outline of my code quality.", 
+      html: "Not particularly interesting, just shows a general outline of my code quality.", 
     },
     { 
       external: "https://github.com/SilicalNZ/DiscordInterpythons", 
