@@ -115,6 +115,37 @@
             line-height: 1.6;
         }
 
+        .digital-art {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .digital-art-wrapper .extra {
+            display: none;
+        }
+
+        #toggle-art:checked ~ .digital-art .extra {
+            display: block;
+        }
+
+        .show-more-btn {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            cursor: pointer;
+            color: var(--link);
+            font-weight: 500;
+        }
+
+        .show-more-btn::after {
+            content: "Show More Images";
+        }
+
+        #toggle-art:checked + .digital-art + .show-more-btn::after {
+            content: "Show Less Images";
+        }
+
         ul {
             margin-top: 1rem;
         }
@@ -181,6 +212,48 @@
 
         .contact-resume:hover svg text {
             transition: fill 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                gap: 0.8rem;
+                padding: 0.6rem;
+                font-size: 0.9rem;
+            }
+
+            .intro {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .headshot {
+                width: 120px;
+                height: 120px;
+            }
+
+            section {
+                margin: 2.5rem 0;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .digital-art img {
+                width: 100%;
+                height: auto;
+            }
+
+            .contact-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -295,26 +368,27 @@
     </div>
 </section>
 
-<section id="digital-art">
-    <h2>Digital Art</h2>
-
-    <p>A collection of digital experiments exploring color theory and motion with NumPy, PIL and OpenCV.</p>
+<div class="digital-art-wrapper">
+    <input type="checkbox" id="toggle-art" hidden>
 
     <div class="digital-art">
-        <img src="assets/1.gif" alt="1.gif" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/2.gif" alt="2.gif" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/3.gif" alt="3.gif" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/4.gif" alt="4.gif" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/5.gif" alt="5.gif" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/6.gif" alt="6.gif" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/7.gif" alt="7.gif" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/8.gif" alt="8.gif" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/9.gif" alt="9.gif" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/10.webp" alt="10.webp" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/11.webp" alt="11.webp" width="222" height="222" loading="lazy" decoding="async"/>
-        <img src="assets/12.webp" alt="12.webp" width="222" height="222" loading="lazy" decoding="async"/>
+        <img src="assets/1.gif" width="222" height="222" loading="lazy" decoding="async"/>
+        <img src="assets/2.gif" width="222" height="222" loading="lazy" decoding="async"/>
+        <img src="assets/3.gif" width="222" height="222" loading="lazy" decoding="async"/>
+
+        <img class="extra" src="assets/4.gif" width="222" height="222" loading="lazy" decoding="async"/>
+        <img class="extra" src="assets/5.gif" width="222" height="222" loading="lazy" decoding="async"/>
+        <img class="extra" src="assets/6.gif" width="222" height="222" loading="lazy" decoding="async"/>
+        <img class="extra" src="assets/7.gif" width="222" height="222" loading="lazy" decoding="async"/>
+        <img class="extra" src="assets/8.gif" width="222" height="222" loading="lazy" decoding="async"/>
+        <img class="extra" src="assets/9.gif" width="222" height="222" loading="lazy" decoding="async"/>
+        <img class="extra" src="assets/10.webp" width="222" height="222" loading="lazy" decoding="async"/>
+        <img class="extra" src="assets/11.webp" width="222" height="222" loading="lazy" decoding="async"/>
+        <img class="extra" src="assets/12.webp" width="222" height="222" loading="lazy" decoding="async"/>
     </div>
-</section>
+
+    <label for="toggle-art" class="show-more-btn"></label>
+</div>
 
 <section id="contact" class="contact">
     <h2>Contact</h2>
