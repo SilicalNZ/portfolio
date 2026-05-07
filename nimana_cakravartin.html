@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mancala Clock Solver</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #0f172a;
+            color: #eee;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #clock {
+            position: relative;
+            width: 360px;
+            height: 360px;
+            margin: 20px auto;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+
+        .slot {
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+
+        .slot input {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            text-align: center;
+            background: #394e70;
+            color: white;
+            border: 1px solid #444;
+            font-size: 28px;
+            -moz-appearance: textfield;
+            padding: 10px;
+        }
+
+        .slot.active input {
+            border: 2px solid #4caf50;
+            box-shadow: 0 0 8px #4caf50;
+        }
+
+        .slot input::-webkit-outer-spin-button,
+        .slot input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 14px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        pre {
+            text-align: left;
+            background: #1e293b;
+            padding: 12px;
+            max-width: 650px;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin: 15px auto 0;  /* 👈 key fix */
+            padding: 12px;
+            background: #1e293b;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            width: 360px;
+        }
+
+        .controls input {
+            width: 90px;
+            padding: 6px 8px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #394e70;
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            outline: none;
+            transition: 0.15s ease;
+        }
+
+        .controls input:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 8px rgba(76,175,80,0.3);
+        }
+
+        .controls button {
+            margin-top: 50px;
+        }
+
+        .controls p {
+            max-width: 500px;
+            text-align: center;
+            margin: 0;
+            color: #aaa;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h1>U.V.S Nimana Cakravartin Solver</h1>
+
+<div id="clock"></div>
+
+<div class="controls">
+    <p>Max moves: Set to 20 when trying to quickly get 10 wins achievement</p>
+    <p>Target Points; Set to 100 for the achievement. If it takes several minutes, it may be worth trying a different puzzle.</p>
+    <p>Otherwise, be careful with these values. They can lead to infinite execution. </p>
+
+    <label>
+        Max Moves:
+        <input id="maxMoves" type="number" value="20" min="20" />
+    </label>
+
+    <label>
+        Target Points:
+        <input id="targetPoints" type="number" value="50" min="50" />
+    </label>
+</div>
+
+<button id="solveBtn" onclick="solveGame()">Solve</button>
+<button onclick="prevAction()">◀</button>
+<button onclick="nextAction()">▶</button>
+
+<pre id="info"></pre>
+
+<script>
+    const URGENT_STATE = "URGENT"
+    const FINISHED_STATE = "FINISHED"
+    const FAILED_STATE = "FAILED"
+    const NORMAL_STATE = "NORMAL"
+
+    let solveBoardState = NORMAL_STATE
+
+    const SIZE = 12
+    const OFFSET = 0.25
+
+    let points = 0
+    let actionsTarget = []
+    let actionsBoard = []
+    let actionsIndex = 0
+
+    let activeBoardIndex = -1
+    const board = [5,1,3,1,5,8,1,3,7,6,7,3] // Count form the top right
+
+    let inputs = []
+
+    const maxMovesInput = document.getElementById("maxMoves")
+    const targetPointsInput = document.getElementById("targetPoints")
+
+    function bindExclusive(a, b) {
+        a.addEventListener("input", () => {
+            if (a.value !== "") b.value = ""
+        })
+
+        b.addEventListener("input", () => {
+            if (b.value !== "") a.value = ""
+        })
+    }
+
+    bindExclusive(maxMovesInput, targetPointsInput)
+
+    function buildClock(board) {
+        const clock = document.getElementById("clock")
+        clock.innerHTML = ""
+        inputs = []
+
+        const radius = 140
+
+        for (let i = 0; i < SIZE; i++) {
+            const angle = (i / SIZE) * Math.PI * 2 - Math.PI / 2 + OFFSET
+
+            const x = 180 + radius * Math.cos(angle)
+            const y = 180 + radius * Math.sin(angle)
+
+            const div = document.createElement("div")
+            div.className = "slot"
+            if (i === activeBoardIndex) div.classList.add("active")
+
+            div.style.left = x + "px"
+            div.style.top = y + "px"
+
+            const input = document.createElement("input")
+            input.type = "number"
+            input.value = board[i]
+            input.pattern = "/\D[2]+"
+
+            input.addEventListener("input", () => {
+                input.value = input.value.replace(/\D/g, "").replace(/^0+(?=\d)/, "").slice(0, 2)
+                board[i] = Number(input.value)
+            })
+
+            inputs.push(input)
+
+            div.appendChild(input)
+            clock.appendChild(div)
+        }
+    }
+
+    function renderAction() {
+        activeBoardIndex = actionsTarget[actionsIndex]
+
+        buildClock(actionsBoard[actionsIndex])
+
+        document.getElementById("info").textContent =
+            `Step ${actionsIndex + 1}/${actionsTarget.length}\n`
+            + (activeBoardIndex !== undefined ? `Move from: ${activeBoardIndex}` : "")
+            + `\nExpected Points: ${points}`
+    }
+
+    function nextAction() {
+        if (actionsIndex < actionsTarget.length - 1) {
+            actionsIndex++
+            renderAction()
+        }
+    }
+
+    function prevAction() {
+        if (actionsIndex > 0) {
+            actionsIndex--
+            renderAction()
+        }
+    }
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1))
+
+            ;[array[i], array[j]] = [array[j], array[i]]
+        }
+
+        return array
+    }
+
+    function pythonMod(x, y) {
+        return ((x % y) + y) % y
+    }
+
+    function check_points(board, targetIndex) {
+        let points = 0
+
+        for (let i = targetIndex; i > -targetIndex; i--) {
+            const target = board[pythonMod(i, SIZE)]
+
+            if (target === 2 || target === 3) {
+                points += (i === targetIndex) ? target : target ** 2
+                board[pythonMod(i, SIZE)] = 0
+                continue
+            }
+
+            return points
+        }
+
+        return points
+    }
+
+    function move(board, targetIndex, state) {
+        const target = board[targetIndex]
+
+        if (target === 0) {
+            throw Error("Cannot move 0 pebbles")
+        }
+
+        board[targetIndex] = 0
+
+        let lastIndex
+
+        for (let i = targetIndex + 1; i < targetIndex + 1 + target; i++) {
+            board[pythonMod(i, SIZE)]++
+            lastIndex = i
+        }
+
+        const points = check_points(board, lastIndex)
+
+        if (!points) {
+            if (state === URGENT_STATE) {
+                return [FAILED_STATE, 0]
+            }
+
+            return [URGENT_STATE, 0]
+        }
+
+        for (const v of board) {
+            if (v !== 0) {
+                return [NORMAL_STATE, points]
+            }
+        }
+
+        return [FINISHED_STATE, points]
+    }
+
+    function solve(board, state, actionsTarget, actionsBoard, points) {
+        for (const i of shuffle([...Array(SIZE).keys()])) {
+            const target = board[i]
+
+            if (target === 0) {
+                continue
+            }
+
+            const newBoard = board.slice()
+
+            const [newState, newPoints] = move(newBoard, i, state)
+
+            const newActionsTarget = actionsTarget.slice()
+            newActionsTarget.push(i)
+            const newActionsBoard = actionsBoard.slice()
+            newActionsBoard.push(newBoard)
+
+            if (newState === FAILED_STATE) {
+                continue
+            }
+
+            if (newState === FINISHED_STATE) {
+                return [points+newPoints, newActionsTarget, newActionsBoard]
+            }
+
+            const solved = solve(newBoard, newState, newActionsTarget, newActionsBoard, points+newPoints)
+            if (solved) {
+                return solved
+            }
+        }
+    }
+
+    function sleep(ms) {
+        return new Promise(r => setTimeout(r, ms))
+    }
+
+    function setSolveLoading(isLoading) {
+        solveBtn.disabled = isLoading
+        solveBtn.textContent = isLoading ? "Solving..." : "Solve"
+    }
+
+    async function solveGame() {
+        setSolveLoading(true)
+
+        try {
+            const maxMoves = Number(document.getElementById("maxMoves").value || 0)
+            const targetPoints = Number(document.getElementById("targetPoints").value || 0)
+
+            for ( ; ; ) {
+                const result = solve(board, NORMAL_STATE, [-1], [board.slice()], 0)
+
+                if (!result) {
+                    document.getElementById("info").textContent = "No solution found."
+                    return
+                }
+
+                [points, actionsTarget, actionsBoard] = result
+
+                if (actionsBoard.length > maxMoves || points < targetPoints) {
+                    await sleep(0)
+                    continue
+                }
+
+                break
+            }
+
+            actionsIndex = 0
+
+            renderAction()
+        } finally {
+            setSolveLoading(false)
+        }
+    }
+
+    buildClock(board)
+</script>
+
+</body>
+</html>
